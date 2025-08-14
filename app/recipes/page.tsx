@@ -28,7 +28,7 @@ const AllRecipesPage = async () => {
               ingredients={recipe.ingredients.length}
               id={recipe.id}
               userName={recipe.userFirstName!}
-              userImageUrl={recipe.userImageUrl!}
+              userImageUrl={recipe.userImageUrl || null} // Pass null instead of empty string
               unlocked={recipe.unlocked}
             />
           ))}

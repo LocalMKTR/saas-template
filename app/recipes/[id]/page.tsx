@@ -1,3 +1,4 @@
+import Image from "next/image";
 import CommentCard from "@/components/CommentCard";
 import CommentForm from "@/components/CommentForm";
 import { getRecipeComments } from "@/lib/actions/comment.actions";
@@ -23,6 +24,17 @@ const RecipePage = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <main className="flex flex-col gap-10">
       <section className="flex flex-col gap-4">
+        {recipe.imageUrl && (
+          <div className="relative w-full h-64">
+            <Image
+              src={recipe.imageUrl}
+              alt={`Photo of ${recipe.name}`}
+              fill
+              className="object-cover rounded-lg"
+              priority
+            />
+          </div>
+        )}
         <h1 className="text-2xl font-bold">{recipe.name}</h1>
         <ul className="flex flex-col gap-2">
           {recipe.ingredients.map((ingredient: string) => (

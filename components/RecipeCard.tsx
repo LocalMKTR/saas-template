@@ -18,7 +18,7 @@ interface RecipeCardProps {
   name: string;
   ingredients: number;
   userName: string;
-  userImageUrl: string;
+  userImageUrl: string | null;
   unlocked: boolean;
 }
 
@@ -31,6 +31,7 @@ const RecipeCard = ({
   unlocked,
 }: RecipeCardProps) => {
   const [open, setOpen] = useState(false);
+  const defaultAvatar = "/default-avatar.png";
   
   const handleUnlockRecipe = async (id: string) => {
     const { success } = await unlockRecipe(id);
@@ -43,14 +44,24 @@ const RecipeCard = ({
   };
 
   return (
-    <div className="flex flex-col gap-4 border p-4 rounded-md shadow-md w-[300px] justify-between">
+    <div className="flex flex-col gap-4 p-4 border rounded-lg">
+      <div className="flex items-center gap-2">
+        <Image
+          src={userImageUrl || defaultAvatar}
+          alt={`Profile picture of ${userName}`}
+          width={40}
+          height={40}
+          className="rounded-full"
+        />
+        <span className="font-medium">{userName}</span>
+      </div>
       <h2 className="text-xl font-bold">{name}</h2>
       <div className="flex flex-col gap-4">
         <p className="text-sm text-gray-500">{ingredients} ingredients</p>
         <span className="flex items-center gap-2">
           <Image
-            src={userImageUrl}
-            alt={userName}
+            src={userImageUrl || defaultAvatar}
+            alt={`${userName}'s avatar`}
             width={24}
             height={24}
             className="rounded-full"
