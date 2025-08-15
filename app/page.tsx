@@ -1,10 +1,12 @@
 import { AppHeader } from "@/components/app-header";
+import { AuthRedirect } from "@/components/auth-redirect";
 
 
 export default function Home() {
   return (
     <>
 <AppHeader title="Sales Trkr" />
+<AuthRedirect>
     <main>
       <section className="flex flex-col gap-4">
         <h1 className="text-4xl font-bold">Welcome to the SaaS App Template</h1>
@@ -33,6 +35,7 @@ export default function Home() {
         </p>
       </section>
     </main>
+    </AuthRedirect>
     </>
   );
 }
